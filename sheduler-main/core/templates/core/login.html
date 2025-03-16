@@ -1,0 +1,64 @@
+{% extends 'core/home.html' %}
+
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="../../static/core/css/home1.css">
+<link rel="stylesheet" type="text/css" href="../../static/core/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../../static/core/css/register_classes.css">
+<link rel="stylesheet" type="text/css" href="../../static/core/css/edit_scheduler.css">
+<link rel="stylesheet" type="text/css" href="../../static/core/css/login.css">
+{% endblock %}
+
+<title>{% block titre %} Log in page {% endblock %}</title>
+
+{% block liens %}	
+	
+	<a class="nav-link active" aria-current="page" style="color: #5534A5;  " href="/">Home</a>
+	<a class="nav-link" style="color: #5534A5;" href="{% url 'list/salles' %}">Planning</a>
+	{% if admin == True %}
+	<a class="nav-link" style="color: #5534A5;" href="{% url 'register/salles' %}">Personnalise</a>
+	{% endif %}
+	{% if online == True %}
+	<a class="nav-link" style="color: #5534A5; text-decoration-line: underline;" href="logout">Logout</a>
+	{% else %}
+	<a class="nav-link" style="color: #5534A5; text-decoration-line: underline;" href="logout">Log in</a>
+	{% endif %}
+
+
+{% endblock %}
+
+{% block content %}	
+<br><br><br><br>
+
+	<p id="LIP">Log in Page</p>
+	<br><br><br>
+		<form method="POST", enctype="multipart/form-data">
+			{% csrf_token %}
+
+			<div id="p1">
+
+				<img src="{% static 'core/img/profile1.png' %}" id="im">
+				
+				{% if form_auth.msg_error %}
+					<div class="text-center fst-italic ">
+			        	<p style=" color: red;">{{ form_auth.msg_error|escape }}</p>
+			        </div>
+				{% endif %}
+
+				<input type="text" name="username" class="p2" placeholder="Username" style="margin-top:40px">
+				<input type="password" name="password" class="p2" placeholder="Password">
+				<div id="p3">
+					<div id="p4">
+						<input type="checkbox" name="remember"><label>Remember me</label>
+					</div>
+					<div><a href="#" style="text-decoration: none; color: black;">Forgot password?</a></div>
+				</div>
+				<input type="submit" name="submit" value="LOGIN" id="login" align="center" >
+			</div>
+		</form>
+
+{% endblock %}
+		
+	
+

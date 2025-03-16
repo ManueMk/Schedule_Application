@@ -1,0 +1,342 @@
+{% extends 'core/home.html' %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="../../../static/core/css/home1.css">
+<link rel="stylesheet" type="text/css" href="../../../static/core/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../../../static/core/css/register_classes.css">
+<link rel="stylesheet" type="text/css" href="../../../static/core/css/edit_scheduler.css">
+<link rel="stylesheet" type="text/css" href="../../../static/core/css/show_scheduler.css">
+<script type="text/javascript">
+	function imprimer(divName) {
+      	var printContents = document.getElementById(divName).innerHTML;    
+   		var originalContents = document.body.innerHTML;      
+   		document.body.innerHTML = printContents;     
+   		window.print();     
+   		document.body.innerHTML = originalContents;
+   }
+
+</script>
+{% endblock %}
+
+<title>{% block titre %} Scheduler - {{full_name_degree}} {% endblock %}</title>
+
+{% block liens %} 
+	<a class="nav-link " aria-current="page" style="color: #5534A5;  " href="/">Home</a>
+	<a class="nav-link " style="color: #5534A5; " href="{% url 'list/salles' %}">Planning</a>
+	{% if admin == True %}
+		<a class="nav-link active" style="color: #5534A5; text-decoration-line: underline;" href="{% url 'register/salles' %}">Personnalise</a>
+	{% endif %}
+	    {% if online == True %}
+			<a class="nav-link" style="color: #5534A5;" href="../../../logout">Logout</a>
+		{% else %}
+			<a class="nav-link" style="color: #5534A5;" href="../../../login">Log in</a>
+		{% endif %}
+	{% endblock %}
+
+{% block content %}	
+
+<div id="o1">
+	
+	<p class="titrePage" style="margin-bottom: 40px"> TIME TABLE OF {{full_name_degree}} </p>
+
+	
+	<table id="tableau" >
+		<tr id="enteteT">
+			<td >  </td>
+			<td > Monday </td>
+			<td > Tuesday </td>
+			<td > Wednesday </td>
+			<td>Thursday</td>
+			<td>Friday</td>
+			<td>Saturday</td>
+			<td>Sunday</td>
+			
+		</tr>
+
+		<tr >
+			<td class="heure" > 07h05 - 9h55 </td>
+			<td class="cell" id="cell1">{{emploi1.salle}}<br>{{emploi1.cours}}<br>{{emploi1.classe}}</td>
+			<td class="cell" id="cell2">{{emploi6.salle}}<br>{{emploi6.cours}}<br>{{emploi6.classe}}</td>
+			<td class="cell" id="cell3">{{emploi11.salle}}<br>{{emploi11.cours}}<br>{{emploi11.classe}}</td>
+			<td class="cell" id="cell4">{{emploi16.salle}}<br>{{emploi16.cours}}<br>{{emploi16.classe}}</td>
+			<td class="cell" id="cell5">{{emploi21.salle}}<br>{{emploi21.cours}}<br>{{emploi21.classe}}</td>
+			<td class="cell" id="cell6">{{emploi26.salle}}<br>{{emploi26.cours}}<br>{{emploi26.classe}}</td>
+			<td class="cell" id="cell7">{{emploi31.salle}}	<br>{{emploi31.cours}}<br>{{emploi31.classe}}</td>
+		</tr>
+
+		<tr >
+			<td class="heure"> 10h05 - 12h55 </td>
+			<td class="cell" id="cell8"> {{emploi2.salle}}<br>{{emploi2.cours}}<br>{{emploi2.classe}}</td>
+			<td class="cell" id="cell9"> {{emploi7.salle}}<br>{{emploi7.cours}}<br>{{emploi7.classe}}</td>
+			<td class="cell" id="cell10"> {{emploi12.salle}}<br>{{emploi12.cours}}<br>{{emploi12.classe}}</td>
+			<td class="cell" id="cell11"> {{emploi17.salle}}<br>{{emploi17.cours}}<br>{{emploi17.classe}}</td>
+			<td class="cell" id="cell12"> {{emploi22.salle}}<br>{{emploi22.cours}}<br>{{emploi22.classe}}</td>
+			<td class="cell" id="cell13"> {{emploi27.salle}}<br>{{emploi27.cours}}<br>{{emploi27.classe}}</td>
+			<td class="cell" id="cell14"> {{emploi32.salle}}<br>{{emploi32.cours}}<br>{{emploi32.classe}}</td>
+		</tr>
+
+		<tr >
+			<td class="heure" > 13h05 - 15h55 </td>
+			<td class="cell" id="cell15"> {{emploi3.salle}}<br>{{emploi3.cours}}<br>{{emploi3.classe}}</td>
+			<td class="cell" id="cell16"> {{emploi8.salle}}<br>{{emploi8.cours}}<br>{{emploi8.classe}}</td>
+			<td class="cell" id="cell17"> {{emploi13.salle}}<br>{{emploi13.cours}}<br>{{emploi13.classe}}</td>
+			<td class="cell" id="cell18"> {{emploi18.salle}}<br>{{emploi18.cours}}<br>{{emploi18.classe}} </td>
+			<td class="cell" id="cell19"> {{emploi23.salle}}<br>{{emploi23.cours}}<br>{{emploi23.classe}}</td>
+			<td class="cell" id="cell20"> {{emploi28.salle}}<br>{{emploi28.cours}}<br>{{emploi28.classe}}</td>
+			<td class="cell" id="cell21">{{emploi33.salle}}<br>{{emploi33.cours}}<br>{{emploi33.classe}}</td>
+		<tr >
+			<td class="heure"> 16h05 - 18h55 </td>
+			<td class="cell" id="cell22"> {{emploi4.salle}}<br>{{emploi4.cours}}<br>{{emploi4.classe}}</td>
+			<td class="cell" id="cell23"> {{emploi9.salle}}<br>{{emploi9.cours}}<br>{{emploi9.classe}}</td>
+			<td class="cell" id="cell24"> {{emploi14.salle}}<br>{{emploi14.cours}}<br>{{emploi14.classe}}</td>
+			<td class="cell" id="cell25"> {{emploi19.salle}}<br>{{emploi19.cours}}<br>{{emploi19.classe}}</td>
+			<td class="cell" id="cell26">{{emploi24.salle}}<br>{{emploi24.cours}}<br>{{emploi24.classe}} </td>
+			<td class="cell" id="cell27"> {{emploi29.salle}}<br>{{emploi29.cours}}<br>{{emploi29.classe}}</td>
+			<td class="cell" id="cell28"> {{emploi34.salle}}<br>{{emploi34.cours}}<br>{{emploi34.classe}}</td>
+		</tr>
+
+		<tr >
+			<td class="heure"> 19h05 - 21h55 </td>
+			<td class="cell" id="cell29"> {{emploi5.salle}}<br>{{emploi5.cours}}<br>{{emploi5.classe}}</td>
+			<td class="cell" id="cell30"> {{emploi10.salle}}<br>{{emploi10.cours}}<br>{{emploi10.classe}}</td>
+			<td class="cell" id="cell31"> {{emploi15.salle}}<br>{{emploi15.cours}}<br>{{emploi15.classe}}</td>
+			<td class="cell" id="cell32">{{emploi20.salle}}<br>{{emploi20.cours}}<br>{{emploi20.classe}} </td>
+			<td class="cell" id="cell33"> {{emploi25.salle}}<br>{{emploi25.cours}}<br>{{emploi25.classe}}</td>
+			<td class="cell" id="cell34"> {{emploi30.salle}}<br>{{emploi30.cours}}<br>{{emploi30.classe}}</td>
+			<td class="cell" id="cell35"> {{emploi35.salle}}<br>{{emploi35.cours}}<br>{{emploi35.classe}}</td>
+		</tr>
+		
+		
+	</table>
+	
+</div>
+
+	<table id="tableau2" >
+	
+		<tr id="enteteT">
+			<td >  </td>
+			<td > Monday </td>
+		</tr>
+		<tr>
+			<td class="heure" > 07h05 - 9h55 </td>
+			<td class="cell" id="cell1">{{emploi1.salle}}<br>{{emploi1.cours}}<br>{{emploi1.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 10h05 - 12h55  </td>
+			<td class="cell" id="cell1">{{emploi2.salle}}<br>{{emploi2.cours}}<br>{{emploi2.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 13h05 - 15h55 </td>
+			<td class="cell" id="cell1">{{emploi3.salle}}<br>{{emploi3.cours}}<br>{{emploi3.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 16h05 - 18h55 </td>
+			<td class="cell" id="cell1">{{emploi4.salle}}<br>{{emploi4.cours}}<br>{{emploi4.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 19h05 - 21h55 </td>
+			<td class="cell" id="cell1">{{emploi5.salle}}<br>{{emploi5.cours}}<br>{{emploi5.classe}}</td>
+		</tr>
+
+		<tr id="enteteT">
+			<td >  </td>
+			<td > Tuesday </td>
+		</tr>
+		<tr>
+			<td class="heure" > 07h05 - 9h55 </td>
+			<td class="cell" id="cell1">{{emploi6.salle}}<br>{{emploi6.cours}}<br>{{emploi6.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 10h05 - 12h55  </td>
+			<td class="cell" id="cell1">{{emploi7.salle}}<br>{{emploi7.cours}}<br>{{emploi7.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 13h05 - 15h55 </td>
+			<td class="cell" id="cell1">{{emploi8.salle}}<br>{{emploi8.cours}}<br>{{emploi8.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 16h05 - 18h55 </td>
+			<td class="cell" id="cell1">{{emploi9.salle}}<br>{{emploi9.cours}}<br>{{emploi9.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 19h05 - 21h55 </td>
+			<td class="cell" id="cell1">{{emploi10.salle}}<br>{{emploi10.cours}}<br>{{emploi10.classe}}</td>
+		</tr>
+
+		<tr id="enteteT">
+			<td >  </td>
+			<td > Wednesday </td>
+		</tr>
+		<tr>
+			<td class="heure" > 07h05 - 9h55 </td>
+			<td class="cell" id="cell1">{{emploi11.salle}}<br>{{emploi11.cours}}<br>{{emploi11.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 10h05 - 12h55  </td>
+			<td class="cell" id="cell1">{{emploi12.salle}}<br>{{emploi12.cours}}<br>{{emploi12.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 13h05 - 15h55 </td>
+			<td class="cell" id="cell1">{{emploi13.salle}}<br>{{emploi13.cours}}<br>{{emploi13.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 16h05 - 18h55 </td>
+			<td class="cell" id="cell1">{{emploi14.salle}}<br>{{emploi14.cours}}<br>{{emploi14.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 19h05 - 21h55 </td>
+			<td class="cell" id="cell1">{{emploi15.salle}}<br>{{emploi15.cours}}<br>{{emploi15.classe}}</td>
+		</tr>
+
+		<tr id="enteteT">
+			<td >  </td>
+			<td > Thursday </td>
+		</tr>
+		<tr>
+			<td class="heure" > 07h05 - 9h55 </td>
+			<td class="cell" id="cell1">{{emploi16.salle}}<br>{{emploi16.cours}}<br>{{emploi16.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 10h05 - 12h55  </td>
+			<td class="cell" id="cell1">{{emploi17.salle}}<br>{{emploi17.cours}}<br>{{emploi17.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 13h05 - 15h55 </td>
+			<td class="cell" id="cell1">{{emploi18.salle}}<br>{{emploi18.cours}}<br>{{emploi18.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 16h05 - 18h55 </td>
+			<td class="cell" id="cell1">{{emploi19.salle}}<br>{{emploi19.cours}}<br>{{emploi19.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 19h05 - 21h55 </td>
+			<td class="cell" id="cell1">{{emploi20.salle}}<br>{{emploi20.cours}}<br>{{emploi20.classe}}</td>
+		</tr>
+
+		<tr id="enteteT">
+			<td >  </td>
+			<td > Friday </td>
+		</tr>
+		<tr>
+			<td class="heure" > 07h05 - 9h55 </td>
+			<td class="cell" id="cell1">{{emploi21.salle}}<br>{{emploi21.cours}}<br>{{emploi21.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 10h05 - 12h55  </td>
+			<td class="cell" id="cell1">{{emploi22.salle}}<br>{{emploi22.cours}}<br>{{emploi22.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 13h05 - 15h55 </td>
+			<td class="cell" id="cell1">{{emploi23.salle}}<br>{{emploi23.cours}}<br>{{emploi23.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 16h05 - 18h55 </td>
+			<td class="cell" id="cell1">{{emploi24.salle}}<br>{{emploi24.cours}}<br>{{emploi24.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 19h05 - 21h55 </td>
+			<td class="cell" id="cell1">{{emploi25.salle}}<br>{{emploi25.cours}}<br>{{emploi25.classe}}</td>
+		</tr>
+
+		<tr id="enteteT">
+			<td >  </td>
+			<td > Saturday </td>
+		</tr>
+		<tr>
+			<td class="heure" > 07h05 - 9h55 </td>
+			<td class="cell" id="cell1">{{emploi26.salle}}<br>{{emploi26.cours}}<br>{{emploi26.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 10h05 - 12h55  </td>
+			<td class="cell" id="cell1">{{emploi27.salle}}<br>{{emploi27.cours}}<br>{{emploi27.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 13h05 - 15h55 </td>
+			<td class="cell" id="cell1">{{emploi28.salle}}<br>{{emploi28.cours}}<br>{{emploi28.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 16h05 - 18h55 </td>
+			<td class="cell" id="cell1">{{emploi29.salle}}<br>{{emploi29.cours}}<br>{{emploi29.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 19h05 - 21h55 </td>
+			<td class="cell" id="cell1">{{emploi30.salle}}<br>{{emploi30.cours}}<br>{{emploi30.classe}}</td>
+		</tr>
+
+		<tr id="enteteT">
+			<td >  </td>
+			<td > Sunday </td>
+		</tr>
+		<tr>
+			<td class="heure" > 07h05 - 9h55 </td>
+			<td class="cell" id="cell1">{{emploi31.salle}}<br>{{emploi31.cours}}<br>{{emploi31.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 10h05 - 12h55  </td>
+			<td class="cell" id="cell1">{{emploi32.salle}}<br>{{emploi32.cours}}<br>{{emploi32.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 13h05 - 15h55 </td>
+			<td class="cell" id="cell1">{{emploi33.salle}}<br>{{emploi33.cours}}<br>{{emploi33.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 16h05 - 18h55 </td>
+			<td class="cell" id="cell1">{{emploi34.salle}}<br>{{emploi34.cours}}<br>{{emploi34.classe}}</td>
+		</tr>
+		<tr>
+			<td class="heure" > 19h05 - 21h55 </td>
+			<td class="cell" id="cell1">{{emploi35.salle}}<br>{{emploi35.cours}}<br>{{emploi35.classe}}</td>
+		</tr>
+
+	</table>
+	
+
+
+
+	<div id="box">
+		<div id="jourHeure"></div>
+		
+		<form>
+			<div class="sec6">
+				<label for="course" class="lib6">Course  :</label>
+	      		<select type="text" class="form-control"  name="course" id="lib6_1" >
+	      			<option></option>
+	      		</select>
+			</div>
+
+			<div class="sec6">
+				<label for="classroom" class="lib6">Classroom  :</label>
+	      		<select type="text" class="form-control"  name="classroom" id="lib6_2" >
+	      			<option></option>
+	      		</select>
+			</div>	
+
+			<div class="sec6">
+				<label for="teacher" class="lib6">Teacher  :</label>
+	      		<select type="text" class="form-control"  name="teacher" id="lib6_3" >
+	      			<option></option>
+	      		</select>
+			</div>	
+
+			<div id="sec2" align="right">
+			<input type="submit" name="submit" value="OK" class="sub"  onclick="closeBox()" >
+			<input type="reset" name="cancel" value="Cancel" class="can"  onclick="closeBox()" >
+			
+		</div>
+
+			
+		</form>
+	</div>
+
+
+<div id="download" align="right">
+		<a href="" onClick="imprimer('o1')">
+			<button>
+				<img src="../../../static/core/img/download_button.png" width="60px" height="55px">
+				Download
+			</button>
+		</a>
+
+	</div>
+	
+{% endblock %}

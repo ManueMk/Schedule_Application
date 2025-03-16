@@ -1,0 +1,134 @@
+{% extends 'core/home.html' %}
+
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/home1.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/bootstrap.min.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/register_classes.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/list_classes.css'%}">
+{% endblock %}
+
+<title>{% block titre %} Classroom's registration {% endblock %}</title>
+
+{% block liens %} 
+	<a class="nav-link " aria-current="page" style="color: #5534A5;  " href="/">Home</a>
+	<a class="nav-link " style="color: #5534A5; " href="{% url 'list/salles' %}">Planning</a>
+	{% if admin == True %}
+	<a class="nav-link active" style="color: #5534A5; text-decoration-line: underline;" href="{% url 'register/salles' %}">Personnalise</a>
+	{% endif %}
+	    {% if online == True %}
+			<a class="nav-link" style="color: #5534A5;" href="../logout">Logout</a>
+		{% else %}
+			<a class="nav-link" style="color: #5534A5;" href="../login">Log in</a>
+		{% endif %}
+	{% endblock %}
+
+{% block content %}	
+
+<br><br><br>
+	<div class="fixed-top" style="background-color:white; margin-top: 50px;">
+		<div id="chercher"  >
+			<a href="https://uy1.uninet.cm/"> <img class="" src="{% static 'core/img/logo1.png'%}"  style="height: 70px; width: 50px; margin-left: 75%; "></img> </a>
+			<br>
+			<form method=POST action="{% url 'searchsalles' %}" class="form-inline" id="btn1">
+				{% csrf_token %}
+				<input class="form-control mr-sm-2" type="search" name="searched" value = "" required placeholder="Type a search" aria-label="Search" id="btn">
+			 	<button class="btn btn-light my-2 my-sm-1" id="btn2" type="submit" style="margin-left:-50px; border-color:white; border-radius: 50px;"><img src="{% static 'core/img/loupe.png'%}" width="15px" height="15px" style="border-radius: 50px; padding-top:0%; padding-bottom:2%; border-color:white;"></button>
+			</form>
+		</div>
+
+		<div id="menu" >
+			<ul style=" ">
+				<li><a href="{% url 'register/salles' %}">Classrooms</a></li>
+				<li><a href="{% url 'register/classes' %}" style="color:black; font-weight: normal;">Classes</a></li>
+				<li><a href="{% url 'register/teachers' %}" style="color:black; font-weight: normal;">Teachers</a></li>
+				<li><a href="{% url 'register/courses' %}" style="color:black; font-weight: normal;">Courses</a></li>
+				<li><a href="{% url 'edit/sheduler' %}" style="color:black; font-weight: normal;">Scheduler_form</a></li>
+				<li><a href="{% url 'scheduler_plann' %}" style="color:black; font-weight: normal;">Scheduler_planning</a></li>
+
+			</ul>
+			<hr style="width:90%; margin-top: 0px; height:9px; border-radius: 6px; color: red; opacity: 1;  background-color:#5534A5 ;; !important ; margin-left: 0px; padding-left: 0px;margin-left: 5%;">
+		</div><br>
+	</div> <br><br><br><br><br>
+<div id="m1">
+	<p class="titrePage">CLASSROOM'S REGISTRATION FORM</p>
+	<p style="margin-bottom: 30px;">Please complete the following form and submit it to register a classroom or upload a file :
+
+	<form method=POST action = "{% url 'uploadsalles' %}">
+		{% csrf_token %}
+			<input type="file" required name="file" >
+			<button class="btn" id="btn2" type="submit" style="margin-right: 5%; color: #5534A5; padding: auto; border-color: #5534A5;;">Upload</button>
+	</form> </p></span>
+
+
+	<form method="POST", enctype="multipart/form-data">
+		{% csrf_token %}
+
+		{% if form.nom_salle.errors %}
+			<div class="alert alert-danger" role="alert" style="font-size: 20px; width: 79.5%;
+				margin-left: 20.5%;" >
+        		{{form.nom_salle.errors}}  
+        	</div>
+    	{% endif %}
+		<div class="sec">
+			<label for="Cname" class="lib3">Classroom name <span style="color:#5534A5">*</span> :</label>
+      		<input type="text" class="form-control" value="{{form.nom_salle.value | default_if_none:''}}" name="nom_salle" id="lib1" list="datalistOptions" id="exampleDataList" placeholder="Type to search salle..." required>
+      		<datalist id="datalistOptions">
+			  <option value="A1001">
+			  <option value="A1002">
+			  <option value="A502">
+			  <option value="A501">
+			  <option value="A350">
+			  <option value="A250">
+			  <option value="A135">
+			  <option value="S006">
+			  <option value="S008">
+			  <option value="S005">
+			  <option value="S111">
+			  <option value="R110">
+			  <option value="R101">
+			  <option value="R103">
+			</datalist>
+		</div>
+
+		{% if form.type.errors %}
+			<div class="alert alert-danger" role="alert" style="font-size: 20px; width: 79.5%;
+				margin-left: 20.5%;" >
+        		{{form.type.errors}}  
+        	</div>
+    	{% endif %}
+		<div class="sec">
+			<label for="type" class="lib3">Type  :</label>
+      		<input type="text" class="form-control" value="{{form.type.value | default_if_none:''}}" name="type" id="lib1" list="type" id="exampleDataList" placeholder="Type of salle..." required>
+      		<datalist id="type">
+      			<option value = "Amphi">
+      			<option value = "Classroom">
+      			<option value="Laboratory">
+      		</datalist>
+		</div>
+
+		{% if form.capacity.errors %}
+			<div class="alert alert-danger" role="alert" style="font-size: 20px; width: 79.5%;
+				margin-left: 20.5%;" >
+        		{{form.capacity.errors}}  
+        	</div>
+    	{% endif %}
+		<div class="sec">
+			<label for="capacity" class="lib3">Capacity :</label>
+      		<input type="text" class="form-control" value="{{form.capacity.value | default_if_none:''}}" name="capacity" id="lib1" >
+		</div>
+
+		<p style="margin-left: 21%; color:#5534A5;">* Required field</p>
+
+		<div id="sec2" align="right">
+			<input type="submit" name="submit" value="submit" class="sub">
+			<button class="can">Cancel</button>
+		</div>
+		
+	</form>
+
+	<br><br>
+</div>
+	
+{% endblock %}

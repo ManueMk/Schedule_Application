@@ -1,0 +1,158 @@
+{% extends 'core/home.html' %}
+
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/home1.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/bootstrap.min.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/register_classes.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/list_classes.css'%}">
+{% endblock %}
+
+<title>{% block titre %} teacher's registration {% endblock %}</title>
+
+{% block liens %} 
+	<a class="nav-link " aria-current="page" style="color: #5534A5;  " href="/">Home</a>
+	<a class="nav-link " style="color: #5534A5; " href="{% url 'list/salles' %}">Planning</a>
+	{% if admin == True %}
+		<a class="nav-link active" style="color: #5534A5; text-decoration-line: underline;" href="{% url 'register/salles' %}">Personnalise</a>
+	{% endif %}
+	    {% if online == True %}
+			<a class="nav-link" style="color: #5534A5;" href="../logout">Logout</a>
+		{% else %}
+			<a class="nav-link" style="color: #5534A5;" href="../login">Log in</a>
+		{% endif %}
+	{% endblock %}
+
+{% block content %}	
+<br><br><br>
+	<div class="fixed-top" style="background-color:white; margin-top: 50px;">
+		<div id="chercher"  >
+			<a href="https://uy1.uninet.cm/"> <img class="" src="{% static 'core/img/logo1.png'%}"  style="height: 70px; width: 50px; margin-left: 75%; "></img> </a>
+			<br>
+			<form method=POST action="{% url 'searchsalles' %}" class="form-inline" id="btn1">
+				{% csrf_token %}
+				<input class="form-control mr-sm-2" type="search" name="searched" value = "" required placeholder="Type a search" aria-label="Search" id="btn">
+			 	<button class="btn btn-light my-2 my-sm-1" id="btn2" type="submit" style="margin-left:-50px; border-color:white; border-radius: 50px;"><img src="{% static 'core/img/loupe.png'%}" width="15px" height="15px" style="border-radius: 50px; padding-top:0%; padding-bottom:2%; border-color:white;"></button>
+			</form>
+		</div>
+
+		<div id="menu" >
+			<ul style=" ">
+				<li><a href="{% url 'register/salles' %}" style="color:black; font-weight: normal;">Classrooms</a></li>
+				<li><a href="{% url 'register/classes' %}" style="color:black; font-weight: normal;">Classes</a></li>
+				<li><a href="{% url 'register/teachers' %}" >Teachers</a></li>
+				<li><a href="{% url 'register/courses' %}" style="color:black; font-weight: normal;">Courses</a></li>
+				<li><a href="{% url 'edit/sheduler' %}" style="color:black; font-weight: normal;">Scheduler_form</a></li>
+				<li><a href="{% url 'scheduler_plann' %}" style="color:black; font-weight: normal;">Scheduler_planning</a></li>
+
+			</ul>
+			<hr style="width:90%; margin-top: 0px; height:9px; border-radius: 6px; color: red; opacity: 1;  background-color:#5534A5 ; !important ; margin-left: 0px; padding-left: 0px;margin-left: 5%;">
+		</div><br>
+	</div> <br><br><br><br><br>
+
+<div id="m1">
+	<p class="titrePage">TEACHER'S REGISTRATION FORM</p>
+	<span style="margin-bottom: 30px;">Please complete the following form and submit it to register a teacher or upload a file :
+	<form method=POST action = "{% url 'uploadteachers' %}">
+		{% csrf_token %}
+			<input type="file" required name="file" >
+			<button class="btn" id="btn2" type="submit" style="margin-right: 5%; color: #5534A5; border-color: #5534A5;;">Upload</button>
+	</form> </p></span>
+
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+
+		{% if form.matricule.errors %}
+			<div class="alert alert-danger" role="alert" style="font-size: 20px; width: 77%;
+				margin-left: 23%;" >
+        		{{form.matricule.errors}}  
+        	</div>
+    	{% endif %}
+		<div class="sec">
+			<label for="Rnum" class="lib2">Registration number <span style="color:#5534A5">*</span> :</label>
+      		<input type="text" class="form-control" value="{{form.matricule.value | default_if_none:''}}" name="matricule" id="lib1" required>
+		</div>
+
+		{% if form.full_name.errors %}
+			<div class="alert alert-danger" role="alert" style="font-size: 20px; width: 77%;
+				margin-left: 23%;" >
+        		{{form.full_name.errors}}  
+        	</div>
+    	{% endif %}
+		<div class="sec">
+			<label for="name" class="lib2">Full name :</label>
+      		<input type="text" class="form-control" value="{{form.full_name.value | default_if_none:''}}" name="full_name" id="lib1" >
+		</div>
+
+		{% if form.email.errors %}
+			<div class="alert alert-danger" role="alert" style="font-size: 20px; width: 77%;
+				margin-left: 23%; " >
+        		{{form.email.errors}}  
+        	</div>
+    	{% endif %}
+		<div class="sec">
+			<label for="name" class="lib2">Email :</label>
+      		<input type="text" class="form-control" value="{{form.email.value | default_if_none:''}}" name="email" id="lib1" >
+		</div>
+
+		{% if form.pp.errors %}
+			<div class="alert alert-danger" role="alert" style="font-size: 20px; width: 77%;
+				margin-left: 23%;" >
+        		{{form.pp.errors}}  
+        	</div>
+    	{% endif %}
+		<div class="sec">
+			<label for="pp" class="lib2"> Profil picture :</label>
+			<input type="file" class="form-control" value="{{form.pp.value | default_if_none:''}}" name="pp" id="lib1">
+		</div>
+
+		{% if form.degree.errors %}
+			<div class="alert alert-danger" role="alert" style="font-size: 20px; width: 77%;
+				margin-left: 23%;" >
+        		{{form.degree.errors}}  
+        	</div>
+    	{% endif %}
+		<div class="sec">
+			<label for="grade" class="lib2">Degree :</label>
+      		<select type="text" class="form-control" value="{{form.degree.value | default_if_none:''}}" name="degree" id="lib1" required>
+      			<option>Professor</option>
+      			<option>Conference Lecturer</option>
+      			<option>Senior Lecturer</option>
+      			<option>Assistant Lecturer</option>
+      			<option>Vaccataire</option>
+      		</select>
+		</div>
+
+		{% if form.department.errors %}
+			<div class="alert alert-danger" role="alert" style="font-size: 20px; width: 77%;
+				margin-left: 23%;" >
+        		{{form.department.errors}}  
+        	</div>
+    	{% endif %}
+		<div class="sec">
+			<label for="dept" class="lib2">Department :</label>
+      		<input type="text" class="form-control" value="{{form.department.value | default_if_none:''}}" name="department" id="lib1" list="datalistdepartments" id="exampleDataList" placeholder="Type to search department..." required>
+      		<datalist id="datalistdepartments">
+			  <option value="Informatics">
+			  <option value="Mathematics">
+			  <option value="Biology">
+			  <option value="Geosciences">
+			  <option value="Chemistry">
+			  <option value="Physics">
+			  <option value="STU">
+			</datalist>
+      	</div>
+		<p style="margin-left: 24%; color:#5534A5;">* Required field</p>
+
+		<div id="sec2" align="right">
+			<input type="submit" name="submit" value="submit" class="sub">
+			<button class="can">Cancel</button>
+		</div>
+		
+	</form>
+
+<br><br>	
+</div>
+	
+{% endblock %}

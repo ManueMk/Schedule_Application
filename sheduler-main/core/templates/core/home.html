@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>{% block titre %} home page {% endblock %}</title>
+		
+		{% load static %}			
+		
+		<link rel="icon" type="image/x-icon" sizes="16x16" href="{% static 'core/img/logo1.png' %}" />      
+		<link rel="shortcut icon" sizes="16x16" href="{% static 'core/img/logo.png' %}" type="image/x-icon" /> 
+
+		{% block link %}
+		<link rel="stylesheet" type="text/css" href="{% static 'core/css/home1.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'core/css/bootstrap.min.css' %}">
+		{% endblock %}
+
+		
+	</head>
+	<body>
+		<div class="fixed-top">		
+		<nav class="navbar navbar-expand-lg navbar-light " style="border-bottom: 2px silver solid; display: flex; background-color: #D4CCE8;">
+		  <div class="container-fluid">
+		    <div id="nnom"><a href="/"> FS SCHEDULER </a> </div>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse " style="font-size: 1.1em;font-weight:normal; justify-content: right; " id="navbarNavAltMarkup" style="margin-right: 5px;">
+		    	{% block liens %} 
+			        <a class="nav-link active" aria-current="page" style="color: #5534A5; text-decoration-line: underline; " href="/">Home</a>
+			        <a class="nav-link" style="color: #5534A5;" href="{% url 'list/salles' %}">Planning</a>
+			        {% if admin == True %}
+			        <a class="nav-link" style="color: #5534A5;" href="{% url 'register/salles' %}">Personnalise</a>
+			        {% endif %}
+	                {% if online == True %}
+			        <a class="nav-link" style="color: #5534A5;" href="logout">Logout</a>
+			        {% else %}
+			        <a class="nav-link" style="color: #5534A5;" href="logout">Log in</a>
+			        {% endif %}
+		        {% endblock %}
+		    </div>
+		  </div>
+		</nav>
+		</div>
+			{% block content %} 
+
+
+			<div id="ne4">
+				<div style="margin-top:5%;">
+					<p class="MS">My   school <br>Time table</p>
+					<p class="OC">Organized courses <br>for better success !!</p>
+					<button id="planning"><a href="{% url 'list/salles' %}">Planning</a></button> 
+				</div>
+				<div>
+					<img src="{% static 'core/img/index8.jpeg' %}" width="70%" height="390px">
+				</div>
+			</div>
+
+			<div id="ne5">
+				<a href="https://uy1.uninet.cm/" style="text-decoration: none;"><p class="CC">Concerning the concerned school</p></a>
+				<p class="texte"> Created by decree N°93/ 036 of January 29, 1993, the university of Yaounde I is a public ,scientist and cultural establishment with legal personnality and financial autonomy. It is places under the supervision of ministry in charge of higher education.<br>
+				In abbreviated UY1, this established regroups articularly 03 faculties.</p>
+			</div>
+
+			<div id="ne6">
+				<div id="bl1" class="fac">
+					<div class="num">1.</div>
+					<a href="https://uy1.uninet.cm/facultes-et-grandes-ecoles/#falsh" style="text-decoration: none;"> <p style = "color:#5534A5" ;>Faculty of arts,letters and humanities</p></a>
+				</div>
+				<div id="border" class="fac">
+					<div class="num">2.</div>
+					<a href="https://uy1.uninet.cm/facultes-et-grandes-ecoles/#facsciences" style="text-decoration: none;"> <p style = "color:#5534A5">Faculty of sciences</p></a>
+				</div>
+				<div id="bl2" class="fac">
+					<div class="num">3.</div>
+					<a href="https://uy1.uninet.cm/facultes-et-grandes-ecoles/#fse" style="text-decoration: none;"> <p style = "color:#5534A5">Faculty of education sciences</p> </a>
+				</div>
+			</div>
+
+			<p style="margin-left:10%"><br>For 3 cyles following the MLD system:</p>
+
+			<div id="ne7">
+	
+				<div id="blc1">
+					
+					<div><img src="{% static 'core/img/index30.png' %}"></div>
+					<p>Licence</p>
+				</div>
+				<div id="blc2">
+					<div><img src="{% static 'core/img/index32.png' %}" ></div>
+					<p>Master and pro master</p>
+				</div>
+				<div id="blc3">
+					<div><img src="{% static 'core/img/index31.png' %}"></div>
+					<p>Doctorate and pro dactorate</p> <br>
+				</div>
+
+			</div> 
+			<br>
+
+
+
+			<div id="ne8">
+				<a href="#ne8" style="text-decoration: none;"> <p class="CC" > What is all about?</p></a>
+				<p >FS SCHEDULER is a time management apllication for the faculty of sciences of the University of Yaounde I in particular.<br>
+				This application offers services for both staff and students in:<br>
+				<ul>
+						<li> The management and organization of courses</li>
+						<li>Consultation of free rooms, management of schedules for a room,a class, a speciality or a teacher</li>
+						<li>Mnagement of the number of students in a room or a class</li>
+						<li>Extraction and modification of a schedule among others...</li>
+						
+				</ul>
+					
+				</p>
+				
+			</div>
+
+			<div id="ne9">
+				<a href="#ne9" style="text-decoration: none;"> <p class="CC"> Who are the targets?</p></a>
+				<div id="ne10">
+					<div class="bt">
+						<div class="im"><img src="{% static 'core/img/index12.png' %}" style=""></div>
+						<p class="ecrit">STUDENTS</p>
+						<p>Any person registered and recognized as a student of the university of Yaounde I belonging to a specific field of study and/or speciality and regularly attending classes in the said institution</p>
+					</div>
+					<div class="bt" style="border-left: 4px #A85CF6 solid;" style="">
+						<div class="im"><img src="{% static 'core/img/index18.png' %}"></div>
+						<p class="ecrit">TEACHERS</p>
+						<p>Any person registered and recognized as a teacher at the University of Yaoundé I in a specific field of study and/or specialty and regularly giving courses at the said institution.</p>
+					</div>
+				</div>
+			</div>
+
+			<div id="ne11">
+				<a href="#ne11" style="text-decoration: none;"><p class="CC">Who can use it?</p></a>
+				<div id="ne12">
+					<div><img src="{% static 'core/img/index13.png' %}"></div>
+					<div style="">
+						<p style="color: #5534A5; font-weight: bold; ">THE ADMINISTRATOR</p>
+						<p>Only the administrator (or certain members of the administration including a dean in the case of vacancy of the rector) is called to modify the schedules. The others(teachers,students,security staff can only consult and download).</p>
+					</div>
+				</div>
+				
+			</div>
+
+
+				
+			
+
+			{% endblock %}
+
+
+			{% block footer %}
+			<footer id="footer">
+				<div id="e4">
+					<div id="e5">
+						<span class="first"> Our address</span> </br>
+						<p> Location : Yaoundé </br> </br>
+						    Tel : 699 60 85 67 </br> </br>
+							E-mail : fsscheduler@gmail.cm
+						</p>
+					</div>
+
+					<div id="e6">
+						<span class="first"> Quick access</span> </br>
+						<p> <a href="#" class="link"> Home</a> </br> </br>
+						    <a href="#ne8" class="link"> About us</a> </br> </br>
+							<a href="#footer" class="link"> Contact</a> </br>
+						</p>
+					</div>
+
+					<div id="e7">
+						<span class="first"> Newletter</span> <br>
+						<form method="post" action="traitement.php">
+							<p>
+								Subscribe to our newsletter to stay informed about application! <br><br>
+								<label for="nom"> E-mail address : </label> </br><input type="email" name="address" id="address" size="20" > <input type="submit" id="submit" value="Submit">
+								
+							</p>
+					
+						</form>
+						
+					</div>
+				</div>
+				<div id="e8">
+					<p> copyright 2022 | FS Scheduler | Web application</p>
+				</div>
+				
+			</footer>
+			<script type="text/javascript" src= "{% static 'core/js/bootstrap.bundle.min.js' %}"></script>
+			{% endblock %}
+		</div>
+
+	</body>
+</html>

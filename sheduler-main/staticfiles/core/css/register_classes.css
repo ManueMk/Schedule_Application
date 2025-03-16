@@ -1,0 +1,87 @@
+#m1{
+	margin-top: 80px;
+	margin-left: 15%;
+	margin-right: 15%;
+	font-size: 1.15em;
+}
+
+.titrePage{
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: #5534A5;
+}
+
+.sec{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 30px;
+}
+
+.lib{
+	width: 19%;
+	margin-right: 20px;
+	text-align: right;
+}
+
+.lib2{
+	width: 28%;
+	margin-right: 20px;
+	text-align: right;
+}
+
+.lib3{
+	width: 24%;
+	margin-right: 20px;
+	text-align: right;
+}
+
+
+.sec2{
+	text-align: right;
+}
+.sub{
+	background-color: #5534A5;
+	color: white;
+
+}
+
+.can{
+	color: #5534A5;
+	background-color: white;
+	margin-left: 15px;
+}
+#menu ul{
+	margin-left: 5%; 
+	margin-right:5%;
+}
+#menu li{
+	padding-left: 2%;
+
+}
+
+@media all and (max-device-width: 750px){
+
+	#menu ul{
+	list-style-image: none;
+	list-style-type: none;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-left: 1%; 
+	color:#5534A5 ;
+	font-weight: bold;
+	word-spacing: normal;
+	overflow-x: scroll;
+	position-y: fixed;
+	background-color: white;
+}	
+
+#menu li{
+	padding-left: 15px;
+
+}
+
+}

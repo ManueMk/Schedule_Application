@@ -1,0 +1,128 @@
+{% extends 'core/home.html' %}
+
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/home1.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/bootstrap.min.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/register_classes.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/list_classes.css'%}">
+{% endblock %}
+
+<title>{% block titre %} Course's registration {% endblock %}</title>
+
+{% block liens %} 
+	<a class="nav-link " aria-current="page" style="color: #5534A5;  " href="/">Home</a>
+	<a class="nav-link " style="color: #5534A5; " href="{% url 'list/salles' %}">Planning</a>
+	{% if admin == True %}
+	<a class="nav-link active" style="color: #5534A5; text-decoration-line: underline;" href="{% url 'register/salles' %}">Personnalise</a>
+	{% endif %}
+	    {% if online == True %}
+			<a class="nav-link" style="color: #5534A5;" href="../logout">Logout</a>
+		{% else %}
+			<a class="nav-link" style="color: #5534A5;" href="../login">Log in</a>
+		{% endif %}
+	{% endblock %}
+
+{% block content %}	
+<br><br><br>
+	<div class="fixed-top" style="background-color:white; margin-top: 50px;">
+		<div id="chercher"  >
+			<a href="https://uy1.uninet.cm/"> <img class="" src="{% static 'core/img/logo1.png'%}"  style="height: 70px; width: 50px; margin-left: 75%; "></img> </a>
+			<br>
+			<form method=POST action="{% url 'searchsalles' %}" class="form-inline" id="btn1">
+				{% csrf_token %}
+				<input class="form-control mr-sm-2" type="search" name="searched" value = "" required placeholder="Type a search" aria-label="Search" id="btn">
+			 	<button class="btn btn-light my-2 my-sm-1" id="btn2" type="submit" style="margin-left:-50px; border-color:white; border-radius: 50px;"><img src="{% static 'core/img/loupe.png'%}" width="15px" height="15px" style="border-radius: 50px; padding-top:0%; padding-bottom:2%; border-color:white;"></button>
+			</form>
+		</div>
+
+		<div id="menu" >
+			<ul style=" ">
+				<li><a href="{% url 'register/salles' %}" style="color:black; font-weight: normal;">Classrooms</a></li>
+				<li><a href="{% url 'register/classes' %}" style="color:black; font-weight: normal;">Classes</a></li>
+				<li><a href="{% url 'register/teachers' %}" style="color:black; font-weight: normal;">Teachers</a></li>
+				<li><a href="{% url 'register/courses' %}" >Courses</a></li>
+				<li><a href="{% url 'edit/sheduler' %}" style="color:black; font-weight: normal;">Scheduler_form</a></li>
+				<li><a href="{% url 'scheduler_plann' %}" style="color:black; font-weight: normal;">Scheduler_planning</a></li>
+
+			</ul>
+			<hr style="width:90%; margin-top: 0px; height:9px; border-radius: 6px; color: red; opacity: 1;  background-color:#5534A5 ;; !important ; margin-left: 0px; padding-left: 0px;margin-left: 5%;">
+		</div><br>
+	</div> <br><br><br><br><br>
+
+<div id="m1">
+	<p class="titrePage">COURSE'S REGISTRATION FORM</p>
+	<p style="margin-bottom: 30px;">Please complete the following form and submit it to register a courseor upload a file :
+	<form method=POST action = "{% url 'uploadcourses' %}">
+		{% csrf_token %}
+			<input type="file" required name="file" >
+			<button class="btn" id="btn2" type="submit" style="margin-right: 5%; color: #5534A5; border-color: #5534A5;;">Upload</button>
+	</form> </p></span>
+
+
+	<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}	
+
+		{% if form.code_ue.errors %}
+			<div class="alert alert-danger" role="alert" style="font-size: 20px; width: 82.5%;
+				margin-left: 17.5%;" >
+        		{{form.code_ue.errors}}  
+        	</div>
+    	{% endif %}
+		<div class="sec">
+			<label for="Scode" class="lib">Subject code <span style="color:#5534A5">*</span> :</label>
+      		<input type="text" class="form-control"  value="{{form.code_ue.value | default_if_none:''}}" name="code_ue" id="lib1" required>
+		</div>
+
+		{% if form.libele.errors %}
+			<div class="alert alert-danger" role="alert" style="font-size: 20px; width: 82.5%;
+				margin-left: 17.5%;" >
+        		{{form.libele.errors}}  
+        	</div>
+    	{% endif %}
+		<div class="sec">
+			<label for="title" class="lib">Libele <span style="color:#5534A5">*</span> :</label>
+      		<input type="text" class="form-control" value="{{form.libele.value | default_if_none:''}}"  name="libele" id="lib1" required>
+		</div>
+
+		{% if form.credit.errors %}
+			<div class="alert alert-danger" role="alert" style="font-size: 20px; width: 82.5%;
+				margin-left: 17.5%;" >
+        		{{form.credit.errors}}  
+        	</div>
+    	{% endif %}
+		<div class="sec">
+			<label for="credit" class="lib">Credit <span style="color:#5534A5">*</span> :</label>
+      		<input type="text" class="form-control"  value="{{form.credit.value | default_if_none:''}}"  name="credit" id="lib1" required>
+		</div>
+
+		{% if form.classe.errors %}
+			<div class="alert alert-danger" role="alert" style="font-size: 20px; width: 82.5%;
+				margin-left: 17.5%;" >
+        		{{form.classe.errors}}  
+        	</div>
+    	{% endif %}
+		<div class="sec">
+			<label for="class" class="lib">Class <span style="color:#5534A5">*</span> :</label>
+			<select type="text" class="form-control" value="{{form.classe.value | default_if_none:''}}"  name="classe" id="lib1" required>
+				{% for classe in classes %}
+      				<option>{{classe}}</option>
+      			{% endfor %}
+      		</select>
+		</div>
+		
+		<p style="margin-left: 17%; color:#5534A5;">* Required field</p>
+
+		<div id="sec2" align="right">
+			<input type="submit" name="submit" value="submit" class="sub">
+			<button class="can">Cancel</button>
+		</div>
+		
+	</form>
+
+<br><br>
+	
+</div>
+	
+{% endblock %}

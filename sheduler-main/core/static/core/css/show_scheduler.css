@@ -1,0 +1,153 @@
+#o1{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 100px;
+	padding-bottom: 30px;
+
+}
+
+#tableau{
+	width: 100%;
+	border: 1px solid black;
+	height: 450px;
+}
+
+#enteteT{
+	 font-size:1.1em;
+	 font-weight: bold; 
+	 background-color: #D4CCE8; 
+	 border: 1px solid black; 
+	 height: 40px;
+}
+
+
+table tr td{
+	border: 1px solid black;
+	text-align: center;
+	width: 12%;
+}
+
+.heure{
+	font-weight: bold;
+}
+
+.form-control{
+	width: 20%;
+}
+
+.lib5{
+	font-size: 1em;
+	font-weight: bold;
+	width: 6%;
+	text-align: right;
+	align-items: center;
+	margin-right: 10px;
+}
+
+.sec5{
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 15px;
+}
+
+.cell:hover{
+	cursor: pointer;
+	background-color: #D4CCE8;
+
+}
+
+#box{
+
+	position: absolute;
+	top: -600px;
+	left: 35%;
+	background-color: #D4CCE8;
+	width: 30%;
+	padding: 25px 15px 15px 15px;
+	box-shadow: 6px 6px 10px black;
+}
+
+.sec6{
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 15px;
+	justify-content: space-between;
+}
+
+.lib6{
+	font-size: 1em;
+	font-weight: bold;
+	width: 27%;
+	text-align: right;
+	align-items: center;
+	margin-right: 10px;
+}
+
+#lib6_1,#lib6_2,#lib6_3{
+	width: 70%;
+}
+
+
+
+#download button{
+	background-color: #5534A5;
+	color: white;
+	font-weight: bold;
+	margin-top: 25px;
+	margin-bottom: 15px;
+	padding-right: 20px;
+	border-radius: 10px;
+	box-shadow: 4px 4px 4px silver;
+	margin-right: 10%;
+
+
+}
+
+#download button:hover{
+	background-color: #5534A5;
+	color: white;
+	font-weight: bold;
+	margin-top: 25px;
+	margin-bottom: 15px;
+	padding-right: 20px;
+	border-radius: 10px;
+	border: 1px solid black;
+	
+
+
+}
+
+
+#download a{
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 1.11em;
+}
+
+@media all and (max-device-width: 900px){
+
+	#tableau{
+		
+		visibility: hidden;
+		display: none;
+	}
+	#tableau2{
+		
+		visibility: visible;
+	}
+
+}
+@media all and (min-device-width: 900px){
+
+	#tableau2{
+		
+		visibility: hidden;
+		display: none;
+	}
+	#tableau{
+		
+		visibility: visible;
+	}
+
+}
